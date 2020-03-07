@@ -43,7 +43,7 @@ class Board {
       bishopRightBlack
     );
   };
-
+  // Determines color of space 
   determineSpaceColor = (xPos, yPos) => {
     let color;
     if (xPos % 2 == 0) {
