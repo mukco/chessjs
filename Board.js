@@ -53,16 +53,16 @@ class Board {
     }
     return color;
   };
-  // placePieceOnSpace places a piece on any specified space.
-  // Set piece will set a piece to a space. 
-  // It cannot identify a space. It can only set a piece after space is identified. 
+  /* placePieceOnSpace() places a piece on any specified space.
+     It differs from setPiece(). setPiece() will set a piece to a space. 
+     It cannot identify a space. It can only set a piece after space is identified */
   placePieceOnSpace = (piece, xPos, yPos) => {
     const placedSpace = this.spaces.find(space =>
       Board.findSpace(space, xPos, yPos)
     );
     placedSpace.setPiece(piece);
   };
-  // Helper method for placePieceOnSpace. 
+  // Helper method for placePieceOnSpace(). 
   // Identifies a specific space.
   static findSpace = (space, xPos, yPos) => {
     return space.xPos == xPos && space.yPos == yPos ? true : false;
