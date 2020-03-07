@@ -20,8 +20,10 @@ class Bishop extends Piece {
   }
 }
 
+module.exports = Bishop;
+
 const bishop1 = new Bishop("white", "white", 1, 1, "bishop");
-bishop1.movePiece(2, 2);
-console.log(bishop1);
-bishop1.resetPosition();
-console.log(bishop1);
+// bishop1.movePiece(2, 2);
+// console.log(bishop1);
+// bishop1.resetPosition();
+// console.log(bishop1);
