@@ -1,10 +1,14 @@
 const Space = require("./Space.js");
 const Bishop = require("./Bishop.js");
+const Player = require("./Player.js"); 
+
 class Board {
   constructor(name) {
     this.name = name;
     this.spaces = [];
     this.pieces = [];
+    this.whitePlayer = null; 
+    this.blackPlayer = null;
   }
 // Generats board
   generateBoard = () => {
@@ -27,14 +31,19 @@ class Board {
   };
   // Generates 4 bishops at appropriate starting positions.
   generateBishops = () => {
-    const bishopLeftWhite = new Bishop("white", 1, 3);
-    this.placePieceOnSpace(bishopLeftWhite, 1, 3);
-    const bishopRightWhite = new Bishop("white", 1, 6);
+    let board = this; 
+    let bishopLeftWhite = new Bishop(this.whitePlayer, 1, 3, board);
+    this.placePieceOnSpace(this.whitePlayer, 1, 3);
+    this.whitePlayer.givePlayerPiece(bishopLeftWhite); 
+    let bishopRightWhite = new Bishop(this.whitePlayer, 1, 6, board);
     this.placePieceOnSpace(bishopRightWhite, 1, 6);
-    const bishopLeftBlack = new Bishop("black", 8, 3);
+    this.whitePlayer.givePlayerPiece(bishopRightWhite);
+    let bishopLeftBlack = new Bishop(this.blackPlayer, 8, 3, board);
     this.placePieceOnSpace(bishopLeftBlack, 8, 3);
-    const bishopRightBlack = new Bishop("black", 8, 6);
+    this.blackPlayer.givePlayerPiece(bishopLeftBlack);
+    let bishopRightBlack = new Bishop(this.blackPlayer, 8, 6, board);
     this.placePieceOnSpace(bishopRightBlack, 8, 6);
+    this.blackPlayer.givePlayerPiece(bishopRightBlack);
 
     this.pieces.push(
       bishopLeftWhite,
@@ -53,8 +62,8 @@ class Board {
     }
     return color;
   };
-  // placePieceOnSpace places a piece on any specified space.
-  // Set piece will set a piece to a space. 
+  // placePieceOnSpace() places a piece on any specified space.
+  // setPiece() will set a piece to a space. 
   // It cannot identify a space. It can only set a piece after space is identified. 
   placePieceOnSpace = (piece, xPos, yPos) => {
     const placedSpace = this.spaces.find(space =>
@@ -62,6 +71,10 @@ class Board {
     );
     placedSpace.setPiece(piece);
   };
+  // setPlayer() to a space. 
+  setPlayer = (player) => { 
+      player.color == 'white' ? this.whitePlayer = player : this.blackPlayer = player; 
+  }
   // Helper method for placePieceOnSpace. 
   // Identifies a specific space.
   static findSpace = (space, xPos, yPos) => {
@@ -69,8 +82,13 @@ class Board {
   };
 }
 
-const board = new Board("New Board");
-board.generateBoard();
-console.log(board);
-// console.log(board.spaces);
-// console.log(board.pieces);
+const board1 = new Board('Board 1')
+const whtPlayer = new Player('Devoun', 'white');
+const blkPlayer = new Player('Julie', 'black'); 
+board1.setPlayer(whtPlayer); 
+board1.setPlayer(blkPlayer);
+console.log(board1);
+board1.generateBoard(); 
+console.log(board1.pieces); 
+
+module.exports = Board;
