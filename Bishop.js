@@ -1,8 +1,8 @@
 const Piece = require("./Piece.js");
 
 class Bishop extends Piece {
-  constructor(owner, color, xPos, yPos, rank) {
-    super(owner, color, xPos, yPos, rank); 
+  constructor(owner, xPos, yPos) {
+    super(owner, xPos, yPos); 
   }
   // Ensures piece moves within the constraints of it's movement rule 
   moveConstraints = (xPos, yPos) => {
@@ -22,7 +22,7 @@ class Bishop extends Piece {
 
 module.exports = Bishop;
 
-const bishop1 = new Bishop("white", "white", 1, 1, "bishop");
+// const bishop1 = new Bishop("white", "white", 1, 1);
 // bishop1.movePiece(2, 2);
 // console.log(bishop1);
 // bishop1.resetPosition();

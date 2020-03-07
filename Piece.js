@@ -1,12 +1,11 @@
 class Piece {
   //Main properties for Piece type
-  constructor(color, owner, xPos, yPos, rank) {
+  constructor(owner, xPos, yPos) {
     this.captured = false;
     this.x_position = xPos;
     this.y_position = yPos;
-    this.color = color;
-    this.owner = owner;
-    this.rank = rank;
+    this.color = owner;
+    this.owner = owner; 
   }
   // Return rank name for piece
   rankName = () => {

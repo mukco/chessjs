@@ -1,9 +1,15 @@
 const Space = require('./Space.js'); 
-
+const Bishop = require('./Bishop.js');
 class Board { 
     constructor(name) { 
         this.name = name; 
-        this.spaces = []
+        this.spaces = []; 
+        this.pieces = []; 
+    }
+
+    generateBoard = () => { 
+        this.generateSpaces(); 
+        this.generateBishops(); 
     }
 
     generateSpaces = () => { 
@@ -15,9 +21,20 @@ class Board {
         }
     }
 
-    // generateBishops = () => { 
-    //     const bishopRightWe
-    // }
+    generateBishops = () => { 
+        const bishopLeftWhite = new Bishop('white', 1, 3);
+        this.spaces.find(this.spaces.findSpace(1, 3));
+        const bishopRightWhite = new Bishop('white', 1, 6);
+        const bishopLeftBlack = new Bishop('black', 8, 3); 
+        const bishopRightBlack = new Bishop('black', 8, 6); 
+
+        this.pieces.push(
+            bishopLeftWhite, 
+            bishopRightWhite, 
+            bishopLeftBlack, 
+            bishopRightBlack, 
+            ); 
+    }
 
     determineSpaceColor = (x, y) => { 
         let color; 
@@ -28,8 +45,13 @@ class Board {
         }
         return color;
     }
+
+    findSpace = (x, y) => { 
+        return this.x_position == x && this.y_position == y;
+    }
 }
 
 const board = new Board('New Board'); 
-board.generateSpaces(); 
-console.log(board.spaces.filter(spaces => spaces.xPos > 5)); 
+board.generateBoard(); 
+console.log(board.spaces);
+console.log(board.pieces);  
