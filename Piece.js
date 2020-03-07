@@ -2,8 +2,13 @@ class Piece {
   //Main properties for Piece type
   constructor(owner, xPos, yPos) {
     this.captured = false;
+<<<<<<< HEAD
     this.xPos = xPos;
     this.yPos = yPos;
+=======
+    this.x_position = xPos;
+    this.y_position = yPos;
+>>>>>>> 821e98a4a782347dea974b082aa3160d2ba1ab25
     this.color = owner;
     this.owner = owner; 
   }
