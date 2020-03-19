@@ -71,7 +71,7 @@ class Board {
     );
     placedSpace.setPiece(piece);
   };
-  // setPlayer() to a slolt.
+  // setPlayer() to a slot.
   setPlayer = player => {
     player.color == "white"
       ? (this.whitePlayer = player)
@@ -83,4 +83,12 @@ class Board {
     return space.xPos == xPos && space.yPos == yPos ? true : false;
   };
 }
+
+const player1 = new Player("Devoun", "white");
+const player2 = new Player("Julie", "black"); 
+const board1 = new Board("Game1");
+board1.setPlayer(player1);
+board1.setPlayer(player2);
+board1.generateBoard();
+console.log(board1);
 module.exports = Board;
